@@ -1,7 +1,5 @@
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.List;
 /**
  * 
  * @author Broulaye Doumbia
@@ -17,7 +15,7 @@ public class BufferPool implements BufferPoolADT{
     private int size;
     
    /**
-    * constructor that create a new buffer pool from file
+    * constructor that creates a new buffer pool from file
     * @param file represent file name
     * @param poolSize represent pool size
     */
@@ -94,7 +92,6 @@ public class BufferPool implements BufferPoolADT{
      * @param Bpos position it need to be put into
      */
     private void writeToFile(byte[] block2, int Bpos) {
-        //long pos = Bpos;
         try {
             file.seek(Bpos);
             file.write(block2);

@@ -1,17 +1,31 @@
-import java.io.BufferedReader;
-import java.io.ObjectInputStream.GetField;
 import java.nio.ByteBuffer;
 
 public class Sort {
     //used for moving bytes
     private byte[] temp1 = new byte[4];
     private byte[] temp2 = new byte[4];
+
+    /**
+     * Return key value at given position from buffer
+     * @param A bufferpool
+     * @param pos position
+     * @return key value
+     */
     private Short getKeyAt(BufferPool A, int pos){
         A.getbytes(temp1, 4, pos);
         ByteBuffer bb = ByteBuffer.wrap(temp1);
         //return (short) ((temp1[0] << 4) + temp1[1]);
         return bb.getShort();
     }
+
+    /**
+     * Partition given buffer pool about pivot
+     * @param A buffer pool
+     * @param left left position
+     * @param right right position
+     * @param pivot pivot position
+     * @return first position of right partition
+     */
     private int partition(BufferPool A, int left, int right,
             Short pivot) {
         while (left <= right) { // Move bounds inward until they meet
@@ -29,6 +43,12 @@ public class Sort {
         return (i + j) / 2;
     }
 
+    /**
+     * Sort given buffer pool
+     * @param pool buffer pool
+     * @param i left index
+     * @param j right index
+     */
     public void quicksort(BufferPool pool, int i, int j) { // Quicksort
         int pivotindex = findpivot(i, j); // Pick a pivot
         swap(pool, pivotindex, j); // Stick pivot at end

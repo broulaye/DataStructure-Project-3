@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import student.TestCase;
 
 /**
@@ -6,10 +7,19 @@ import student.TestCase;
  * @version:10/22/2016.
  */
 public class BlockTest extends TestCase {
-    public void SetUp(){
-
-    }
-    public void testBlock() {
-
+    /**
+     * Test basic block class functionalities
+     */
+    public void testBlockFunctions() {
+        byte[] bytes = new byte[13];
+        Block aBlock = new Block(bytes, 23, true);
+        Assert.assertTrue(aBlock.isDirty());
+        Block bBlock = new Block();
+        bBlock.setBlock(bytes);
+        bBlock.setDirty(false);
+        Assert.assertFalse(bBlock.isDirty());
+        Assert.assertEquals(bytes, bBlock.getBlock());
+        bBlock.setPos(4);
+        Assert.assertNotEquals(aBlock.getPos(), bBlock.getPos());
     }
 }
