@@ -2,6 +2,8 @@
  * {Project Description Here}
  */
 
+import static java.lang.Integer.parseInt;
+
 /**
  * The class containing the main method.
  *
@@ -36,8 +38,15 @@ public class Quicksort {
      */
     public static void main(String[] args) {
         // This is the main file for the program.
+        if(args.length != 3){
+            System.out.println("Usage: Quicksort <data-file-name> <numb-buffers> <stat-file-name> ");
+            return;
+        }
+        String dataFileName = args[0];
+        int numberOfBuffers = parseInt(args[1]);
+        String statFileName = args[2];
         Sort quickSort = new Sort();
-        BufferPool pool = new BufferPool("testinput1", 1);
+        BufferPool pool = new BufferPool(dataFileName, numberOfBuffers);
         quickSort.quicksort(pool, 0, pool.getNumRecord()-1);
         pool.close();
     }

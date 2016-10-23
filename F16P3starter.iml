@@ -2,6 +2,7 @@
 <module type="JAVA_MODULE" version="4">
   <component name="EclipseModuleManager">
     <libelement value="jar://$MODULE_DIR$/lib/student.jar!/" />
+    <libelement value="file://lib/student.jar" />
     <src_description expected_position="0">
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
     </src_description>
@@ -15,7 +16,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">
-      <library name="student.jar">
+      <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/student.jar!/" />
         </CLASSES>
