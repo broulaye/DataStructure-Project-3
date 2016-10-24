@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 /**
  * 
@@ -13,14 +14,19 @@ public class BufferPool implements BufferPoolADT{
     private int blockSize;
     private int maxPoolSize;
     private int size;
-    
-   /**
+    private int cacheHit;
+    private int cacheMiss;
+    private int numDiscWrite;
+    /**
     * constructor that creates a new buffer pool from file
     * @param file represent file name
     * @param poolSize represent pool size
     */
     public BufferPool(String file, int poolSize) {
         Pool = new Block[20];
+        cacheHit = 0;
+        cacheMiss = 0;
+        numDiscWrite = 0;
         for(int i = 0; i < Pool.length; i++) {
             Pool[i] = new Block();
         }
@@ -49,6 +55,7 @@ public class BufferPool implements BufferPoolADT{
         int blockPos = posToBlock(pos);
         for(int i=0; i < size; i++) {
             if(Pool[i].getPos() == blockPos) {
+                cacheHit++;
                 System.arraycopy(space, 0, Pool[i].getBlock(),(4*pos)-blockPos,sz);
                 Pool[i].setDirty(true);
                 Block temp = Pool[i];
@@ -59,7 +66,8 @@ public class BufferPool implements BufferPoolADT{
                 return;
             }
         }
-        
+        //Not in the buffer pool
+        cacheMiss++;
         if(size >= maxPoolSize) {
             if(Pool[size-1].isDirty()) {
                 writeToFile(Pool[size-1].getBlock(), Pool[size-1].getPos());
@@ -99,6 +107,7 @@ public class BufferPool implements BufferPoolADT{
         catch (Exception e) {
             e.printStackTrace();
         }
+        numDiscWrite++;
     }
 
     /**
@@ -112,10 +121,13 @@ public class BufferPool implements BufferPoolADT{
         int blockPos = posToBlock(pos);
         for(int i=0; i < size; i++) {
             if(Pool[i].getPos() == blockPos) {
+                cacheHit++;
                 System.arraycopy(Pool[i].getBlock(),(4*pos)-blockPos,space,0,sz);
                 return;
             }
         }
+        //Not in buffer Pool
+        cacheMiss++;
         if(size >= maxPoolSize) {
             if(Pool[size-1].isDirty()) {
                 writeToFile(Pool[size-1].getBlock(), Pool[size-1].getPos());
@@ -201,6 +213,16 @@ public class BufferPool implements BufferPoolADT{
             e.printStackTrace();
         }
     }
-    
 
+    public int getCacheHit() {
+        return cacheHit;
+    }
+
+    public int getCacheMiss() {
+        return cacheMiss;
+    }
+
+    public int getNumDiscWrite() {
+        return numDiscWrite;
+    }
 }
