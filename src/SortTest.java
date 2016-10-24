@@ -1,8 +1,6 @@
 import org.junit.Assert;
 import student.TestCase;
 
-import java.io.IOException;
-
 /**
  * @author: berth
  * @version:10/23/2016.
@@ -10,39 +8,36 @@ import java.io.IOException;
 public class SortTest extends TestCase {
     Sort sorter;
     BufferPool pool;
-    final String filename = "testinput1";
-    final String[] argsFile = {"-a", filename, "22"};
+    FileGenerator generator;
     CheckFile checker = new CheckFile();
     int poolSize;
-    byte[] bytes;
     /*******************
      * Variable setup
      *******************/
     public void setUp() {
-        sorter = new Sort();
-        poolSize = 67;
-        bytes = new byte[78];
 
-        try {
-            FileGenerator generator = new FileGenerator();
-            generator.generateFile(argsFile);
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+        sorter = new Sort();
+        poolSize = 10;
+        generator = new FileGenerator();
     }
 
     /**
      * test sorting function
      */
-    public void testSort() {
-        pool = new BufferPool(filename, poolSize);
-        sorter.quicksort(pool, 20, 50);
+    public void testSort() throws Exception{
+        String filename = "test1";
+        final String[] argsFile = {"-a", filename, "2"};
+        generator.generateFile(argsFile);
+        pool = new BufferPool(filename, 9);
+        sorter.quickSort(pool, 0, pool.getNumRecord()-1);
+        pool.close();
         try {
-            Assert.assertFalse(checker.checkFile(filename));
+            Assert.assertTrue(checker.checkFile(filename));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        pool.close();
+
+
     }
 
 }

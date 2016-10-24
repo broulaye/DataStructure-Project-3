@@ -12,7 +12,7 @@ public class Sort {
      * @return key value
      */
     private Short getKeyAt(BufferPool A, int pos){
-        A.getbytes(temp1, 4, pos);
+        A.getBytes(temp1, 4, pos);
         ByteBuffer bb = ByteBuffer.wrap(temp1);
         //return (short) ((temp1[0] << 4) + temp1[1]);
         return bb.getShort();
@@ -39,7 +39,7 @@ public class Sort {
         return left; // Return first position in right partition
     }
 
-    private int findpivot(int i, int j) {
+    private int findPivot(int i, int j) {
         return (i + j) / 2;
     }
 
@@ -49,17 +49,16 @@ public class Sort {
      * @param i left index
      * @param j right index
      */
-    public void quicksort(BufferPool pool, int i, int j) { // Quicksort
-        int pivotindex = findpivot(i, j); // Pick a pivot
-        swap(pool, pivotindex, j); // Stick pivot at end
+    public void quickSort(BufferPool pool, int i, int j) { // Quicksort
+        int pivotIndex = findPivot(i, j); // Pick a pivot
+        swap(pool, pivotIndex, j); // Stick pivot at end
         // k will be the first position in the right subarray
-        short key = getKeyAt(pool, j);
-        int k = partition(pool, i, j - 1, key);
+        int k = partition(pool, i, j - 1, getKeyAt(pool, j));
         swap(pool, k, j); // Put pivot in place
         if ((k - i) > 1)
-            quicksort(pool, i, k - 1); // Sort left partition
+            quickSort(pool, i, k - 1); // Sort left partition
         if ((j - k) > 1)
-            quicksort(pool, k + 1, j); // Sort right partition
+            quickSort(pool, k + 1, j); // Sort right partition
     }
     /**
      * Swap A[i] and A[j]
@@ -68,10 +67,10 @@ public class Sort {
      * @param j (second argument)
      */
     private void swap(BufferPool A, int i, int j) {
-        A.getbytes(temp1, 4, i); //temp1 = A[i]
-        A.getbytes(temp2, 4, j); //temp2 = A[j]
-        A.insert(temp2, 4, i);   //A[i] = A[j] (or temp2) 
+        A.getBytes(temp1, 4, i); //temp1 = A[i]
+        A.getBytes(temp2, 4, j); //temp2 = A[j]
         A.insert(temp1, 4, j);   //A[j] = A[i] (or temp1)
+        A.insert(temp2, 4, i);   //A[i] = A[j] (or temp2)
     }
 
 }

@@ -21,12 +21,12 @@ public class QuicksortTest extends TestCase {
     public void testQInit() {
         FileGenerator generator = new FileGenerator();
         String[] argsFile = {"-a", "testinput1", "10"};
-        String[] argsSort = {"testinput1", "1", "teststat"};
+        //String[] argsSort = {"testinput1", "1", "teststat"};
         try {
             generator.generateFile(argsFile);
             Quicksort tree = new Quicksort();
             assertNotNull(tree);
-            Quicksort.main(argsSort);
+            //Quicksort.main(argsSort);
 
         }
         catch (IOException e) {

@@ -9,7 +9,6 @@ import java.io.RandomAccessFile;
 public class BufferPool implements BufferPoolADT{
 
     private Block[] Pool;
-    private Byte[] block;
     private RandomAccessFile file;
     private int blockSize;
     private int maxPoolSize;
@@ -31,7 +30,6 @@ public class BufferPool implements BufferPoolADT{
             Pool[i] = new Block();
         }
         size = 0;
-        block = new Byte[4096];
         blockSize = 4096;
         maxPoolSize = poolSize;
         try {
@@ -56,7 +54,7 @@ public class BufferPool implements BufferPoolADT{
         for(int i=0; i < size; i++) {
             if(Pool[i].getPos() == blockPos) {
                 cacheHit++;
-                System.arraycopy(space, 0, Pool[i].getBlock(),(4*pos)-blockPos,sz);
+                System.arraycopy(space, 0, Pool[i].getBlock(),((4*pos)-blockPos),sz);
                 Pool[i].setDirty(true);
                 Block temp = Pool[i];
                 for(int k = i; k >0; k--) {
@@ -68,7 +66,7 @@ public class BufferPool implements BufferPoolADT{
         }
         //Not in the buffer pool
         cacheMiss++;
-        if(size >= maxPoolSize) {
+        if(size == maxPoolSize) {
             if(Pool[size-1].isDirty()) {
                 writeToFile(Pool[size-1].getBlock(), Pool[size-1].getPos());
             }
@@ -87,7 +85,7 @@ public class BufferPool implements BufferPoolADT{
 
         Pool[0].setPos(blockPos);
         getBlock(blockPos, Pool[0].getBlock());
-        System.arraycopy(space, 0, Pool[0].getBlock(),(4*pos)-blockPos,sz);
+        System.arraycopy(space, 0, Pool[0].getBlock(),((4*pos)-blockPos),sz);
         Pool[0].setDirty(true);
         
         
@@ -97,11 +95,11 @@ public class BufferPool implements BufferPoolADT{
      * private method that write bytes array to the file
      * at a specified position 
      * @param block2 block to be inserted
-     * @param Bpos position it need to be put into
+     * @param bPos position it need to be put into
      */
-    private void writeToFile(byte[] block2, int Bpos) {
+    private void writeToFile(byte[] block2, int bPos) {
         try {
-            file.seek(Bpos);
+            file.seek(bPos);
             file.write(block2);
         }
         catch (Exception e) {
@@ -117,18 +115,18 @@ public class BufferPool implements BufferPoolADT{
      * @param pos position of bytes
      */
     @Override
-    public void getbytes(byte[] space, int sz, int pos) {
+    public void getBytes(byte[] space, int sz, int pos) {
         int blockPos = posToBlock(pos);
         for(int i=0; i < size; i++) {
             if(Pool[i].getPos() == blockPos) {
                 cacheHit++;
-                System.arraycopy(Pool[i].getBlock(),(4*pos)-blockPos,space,0,sz);
+                System.arraycopy(Pool[i].getBlock(),((4*pos)-blockPos),space,0,sz);
                 return;
             }
         }
         //Not in buffer Pool
         cacheMiss++;
-        if(size >= maxPoolSize) {
+        if(size == maxPoolSize) {
             if(Pool[size-1].isDirty()) {
                 writeToFile(Pool[size-1].getBlock(), Pool[size-1].getPos());
             }
@@ -145,7 +143,7 @@ public class BufferPool implements BufferPoolADT{
         Pool[0].setPos(blockPos);
         getBlock(blockPos, Pool[0].getBlock());
         Pool[0].setDirty(false);
-        System.arraycopy(Pool[0].getBlock(),(4*pos)-blockPos,space, 0,sz);
+        System.arraycopy(Pool[0].getBlock(),((4*pos)-blockPos),space, 0,sz);
 
     }
     
@@ -190,7 +188,7 @@ public class BufferPool implements BufferPoolADT{
      * @return the block number
      */
     private int posToBlock(int pos) {
-        return ((int)((pos*4)/blockSize))*blockSize;
+        return ((pos*4)/blockSize)*blockSize;
     }
     
     /**
@@ -198,7 +196,7 @@ public class BufferPool implements BufferPoolADT{
      * then close the file stream
      */
     public void close() {
-        for(int i = 0; i < Pool.length; i++) {
+        for(int i = 0; i < size; i++) {
             if(Pool[i].isDirty()) {
                 writeToFile(Pool[i].getBlock(), Pool[i].getPos());
             }

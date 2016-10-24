@@ -12,5 +12,5 @@ public interface BufferPoolADT {
     public void insert(byte[] space, int sz, int pos);
 
     // Copy "sz" bytes from position "pos" of the buffered storage to "space"
-    public void getbytes(byte[] space, int sz, int pos);
+    public void getBytes(byte[] space, int sz, int pos);
 }

@@ -47,7 +47,7 @@ public class BufferPoolTest extends TestCase {
      */
     public void testRetrieval() {
         pool = new BufferPool(filename, poolSize);
-        pool.getbytes(bytes, bytes.length - 1, 2);
+        pool.getBytes(bytes, bytes.length - 1, 2);
         pool.close();
     }
 }

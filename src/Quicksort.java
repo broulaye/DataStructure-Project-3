@@ -56,7 +56,7 @@ public class Quicksort {
         Sort quickSort = new Sort();
         BufferPool pool = new BufferPool(dataFileName, numberOfBuffers);
         long start = System.currentTimeMillis();
-        quickSort.quicksort(pool, 0, pool.getNumRecord()-1);
+        quickSort.quickSort(pool, 0, pool.getNumRecord()-1);
         long end = System.currentTimeMillis();
         pool.close();
         try {
