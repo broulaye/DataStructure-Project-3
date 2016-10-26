@@ -57,8 +57,8 @@ public class Quicksort {
         BufferPool pool = new BufferPool(dataFileName, numberOfBuffers);
         long start = System.currentTimeMillis();
         quickSort.quickSort(pool, 0, pool.getNumRecord()-1);
-        long end = System.currentTimeMillis();
         pool.close();
+        long end = System.currentTimeMillis();
         try {
             PrintWriter writer = new PrintWriter(new FileOutputStream(
                     new File(statFileName), true));

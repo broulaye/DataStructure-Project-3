@@ -1,4 +1,5 @@
 import java.nio.ByteBuffer;
+import java.nio.ShortBuffer;
 
 public class Sort {
     //used for moving bytes
@@ -28,10 +29,12 @@ public class Sort {
      */
     private int partition(BufferPool A, int left, int right,
             Short pivot) {
+        Short leftShort;
+        Short rightShort;
         while (left <= right) { // Move bounds inward until they meet
-            while (getKeyAt(A, left).compareTo(pivot) < 0)
+            while ((leftShort = getKeyAt(A, left)).compareTo(pivot) < 0)
                 left++;
-            while ((right >= left) && (getKeyAt(A, right).compareTo(pivot) >= 0))
+            while ((right >= left) && ((rightShort =getKeyAt(A, right)).compareTo(pivot) >= 0))
                 right--;
             if (right > left)
                 swap(A, left, right); // Swap out-of-place values
@@ -51,9 +54,9 @@ public class Sort {
      */
     public void quickSort(BufferPool A, int i, int j) { // Quicksort
         int pivotIndex = findPivot(i, j); // Pick a pivot
-        swap(A, pivotIndex, j); // Stick pivot at end
+        ByteBuffer bb = ByteBuffer.wrap(swap(A, pivotIndex, j)); // Stick pivot at end
         // k will be the first position in the right subarray
-        int k = partition(A, i, j - 1, getKeyAt(A, j));
+        int k = partition(A, i, j - 1, bb.getShort());
         swap(A, k, j); // Put pivot in place
         if ((k - i) > 1)
             quickSort(A, i, k - 1); // Sort left partition
@@ -66,11 +69,12 @@ public class Sort {
      * @param i (first argument)
      * @param j (second argument)
      */
-    private void swap(BufferPool A, int i, int j) {
+    private byte[] swap(BufferPool A, int i, int j) {
         A.getBytes(temp1, 4, i); //temp1 = A[i]
         A.getBytes(temp2, 4, j); //temp2 = A[j]
         A.insert(temp1, 4, j);   //A[j] = A[i] (or temp1)
         A.insert(temp2, 4, i);   //A[i] = A[j] (or temp2)
+        return temp1;
     }
 
 }
