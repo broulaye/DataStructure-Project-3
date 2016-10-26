@@ -22,7 +22,7 @@ public class BufferPoolTest extends TestCase {
     public void setUp(){
         poolSize = 34;
         position = 12;
-        bytes = new byte[56];
+        bytes = new byte[4096];
         try {
             FileGenerator generator = new FileGenerator();
             generator.generateFile(argsFile);

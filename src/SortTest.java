@@ -10,14 +10,13 @@ public class SortTest extends TestCase {
     BufferPool pool;
     FileGenerator generator;
     CheckFile checker = new CheckFile();
-    int poolSize;
     /*******************
      * Variable setup
      *******************/
     public void setUp() {
 
+
         sorter = new Sort();
-        poolSize = 10;
         generator = new FileGenerator();
     }
 
@@ -25,10 +24,10 @@ public class SortTest extends TestCase {
      * test sorting function
      */
     public void testSort() throws Exception{
-        String filename = "test1";
-        final String[] argsFile = {"-a", filename, "2"};
+        String filename = "test";
+        final String[] argsFile = {"-a", filename, "23"};
         generator.generateFile(argsFile);
-        pool = new BufferPool(filename, 9);
+        pool = new BufferPool(filename,20);
         sorter.quickSort(pool, 0, pool.getNumRecord()-1);
         pool.close();
         try {

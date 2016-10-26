@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 /**
  * 
@@ -16,17 +15,21 @@ public class BufferPool implements BufferPoolADT{
     private int cacheHit;
     private int cacheMiss;
     private int numDiscWrite;
+    private byte[] tempByteArray;
+    private Block tempBlock;
     /**
     * constructor that creates a new buffer pool from file
     * @param file represent file name
     * @param poolSize represent pool size
     */
     public BufferPool(String file, int poolSize) {
-        Pool = new Block[20];
+        Pool = new Block[poolSize];
         cacheHit = 0;
         cacheMiss = 0;
         numDiscWrite = 0;
-        for(int i = 0; i < Pool.length; i++) {
+        tempByteArray = new byte[4096];
+        tempBlock = new Block();
+        for(int i = 0; i < poolSize; i++) {
             Pool[i] = new Block();
         }
         size = 0;
@@ -56,11 +59,11 @@ public class BufferPool implements BufferPoolADT{
                 cacheHit++;
                 System.arraycopy(space, 0, Pool[i].getBlock(),((4*pos)-blockPos),sz);
                 Pool[i].setDirty(true);
-                Block temp = Pool[i];
+                tempBlock.setBlock(Pool[i]);
                 for(int k = i; k >0; k--) {
-                    Pool[k] = Pool[k-1];
+                    Pool[k].setBlock(Pool[k-1]);
                 }
-                Pool[0] = temp;
+                Pool[0].setBlock(tempBlock);
                 return;
             }
         }
@@ -70,32 +73,30 @@ public class BufferPool implements BufferPoolADT{
             if(Pool[size-1].isDirty()) {
                 writeToFile(Pool[size-1].getBlock(), Pool[size-1].getPos());
             }
-            for(int i = size-1; i > 0; i--) {
-                Pool[i] = Pool[i-1];
+            for(int j = size-1; j > 0; j--) {
+                Pool[j].setBlock(Pool[j-1]);
             }
             
         }
         else {
             for(int i = size; i > 0; i--) {
-                Pool[i] = Pool[i-1];
+                Pool[i].setBlock(Pool[i-1]);
             }
             size++;
-
         }
 
         Pool[0].setPos(blockPos);
-        getBlock(blockPos, Pool[0].getBlock());
-        System.arraycopy(space, 0, Pool[0].getBlock(),((4*pos)-blockPos),sz);
+        getBlock(blockPos, tempByteArray);
+        System.arraycopy(space, 0, tempByteArray,((4*pos)-blockPos),sz);
+        Pool[0].setBlock(tempByteArray);
         Pool[0].setDirty(true);
-        
-        
     }
 
     /**
      * private method that write bytes array to the file
      * at a specified position 
      * @param block2 block to be inserted
-     * @param bPos position it need to be put into
+     * @param bPos position block need to be put into
      */
     private void writeToFile(byte[] block2, int bPos) {
         try {
@@ -121,6 +122,11 @@ public class BufferPool implements BufferPoolADT{
             if(Pool[i].getPos() == blockPos) {
                 cacheHit++;
                 System.arraycopy(Pool[i].getBlock(),((4*pos)-blockPos),space,0,sz);
+                tempBlock.setBlock(Pool[i]);
+                for(int k = i; k >0; k--) {
+                    Pool[k].setBlock(Pool[k-1]);
+                }
+                Pool[0].setBlock(tempBlock);
                 return;
             }
         }
@@ -131,17 +137,18 @@ public class BufferPool implements BufferPoolADT{
                 writeToFile(Pool[size-1].getBlock(), Pool[size-1].getPos());
             }
             for(int i = size-1; i > 0; i--) {
-                Pool[i] = Pool[i-1];
+                Pool[i].setBlock(Pool[i-1]);
             }
         }
         else {
             for(int i = size; i > 0; i--) {
-                Pool[i] = Pool[i-1];
+                Pool[i].setBlock(Pool[i-1]);
             }
             size++;
         }
         Pool[0].setPos(blockPos);
-        getBlock(blockPos, Pool[0].getBlock());
+        getBlock(blockPos, tempByteArray);
+        Pool[0].setBlock(tempByteArray);
         Pool[0].setDirty(false);
         System.arraycopy(Pool[0].getBlock(),((4*pos)-blockPos),space, 0,sz);
 
@@ -154,7 +161,6 @@ public class BufferPool implements BufferPoolADT{
      * @param block new block to get
      */
     private void getBlock(int blockPos, byte[] block) {
-        //int pos = blockPos ;
         try {
             file.seek(blockPos);
 

@@ -4,7 +4,7 @@ public class Sort {
     //used for moving bytes
     private byte[] temp1 = new byte[4];
     private byte[] temp2 = new byte[4];
-
+    private byte[] temp3 = new byte[4];
     /**
      * Return key value at given position from buffer
      * @param A bufferpool
@@ -12,8 +12,8 @@ public class Sort {
      * @return key value
      */
     private Short getKeyAt(BufferPool A, int pos){
-        A.getBytes(temp1, 4, pos);
-        ByteBuffer bb = ByteBuffer.wrap(temp1);
+        A.getBytes(temp3, 4, pos);
+        ByteBuffer bb = ByteBuffer.wrap(temp3);
         //return (short) ((temp1[0] << 4) + temp1[1]);
         return bb.getShort();
     }
@@ -45,20 +45,20 @@ public class Sort {
 
     /**
      * Sort given buffer pool
-     * @param pool buffer pool
+     * @param A buffer pool
      * @param i left index
      * @param j right index
      */
-    public void quickSort(BufferPool pool, int i, int j) { // Quicksort
+    public void quickSort(BufferPool A, int i, int j) { // Quicksort
         int pivotIndex = findPivot(i, j); // Pick a pivot
-        swap(pool, pivotIndex, j); // Stick pivot at end
+        swap(A, pivotIndex, j); // Stick pivot at end
         // k will be the first position in the right subarray
-        int k = partition(pool, i, j - 1, getKeyAt(pool, j));
-        swap(pool, k, j); // Put pivot in place
+        int k = partition(A, i, j - 1, getKeyAt(A, j));
+        swap(A, k, j); // Put pivot in place
         if ((k - i) > 1)
-            quickSort(pool, i, k - 1); // Sort left partition
+            quickSort(A, i, k - 1); // Sort left partition
         if ((j - k) > 1)
-            quickSort(pool, k + 1, j); // Sort right partition
+            quickSort(A, k + 1, j); // Sort right partition
     }
     /**
      * Swap A[i] and A[j]
