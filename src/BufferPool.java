@@ -15,7 +15,6 @@ public class BufferPool implements BufferPoolADT{
     private int cacheHit;
     private int cacheMiss;
     private int numDiscWrite;
-    private byte[] tempByteArray;
     private Block tempBlock;
     /**
     * constructor that creates a new buffer pool from file
@@ -27,7 +26,6 @@ public class BufferPool implements BufferPoolADT{
         cacheHit = 0;
         cacheMiss = 0;
         numDiscWrite = 0;
-        tempByteArray = new byte[4096];
         tempBlock = new Block();
         for(int i = 0; i < poolSize; i++) {
             Pool[i] = new Block();
@@ -59,36 +57,38 @@ public class BufferPool implements BufferPoolADT{
                 cacheHit++;
                 System.arraycopy(space, 0, Pool[i].getBlock(),((4*pos)-blockPos),sz);
                 Pool[i].setDirty(true);
-                tempBlock.setBlock(Pool[i]);
+                tempBlock =Pool[i];
                 for(int k = i; k >0; k--) {
-                    Pool[k].setBlock(Pool[k-1]);
+                    Pool[k] =Pool[k-1];
                 }
-                Pool[0].setBlock(tempBlock);
+                Pool[0] = tempBlock;
                 return;
             }
         }
         //Not in the buffer pool
         cacheMiss++;
         if(size == maxPoolSize) {
+            tempBlock = Pool[size-1];
             if(Pool[size-1].isDirty()) {
                 writeToFile(Pool[size-1].getBlock(), Pool[size-1].getPos());
             }
             for(int j = size-1; j > 0; j--) {
-                Pool[j].setBlock(Pool[j-1]);
+                Pool[j] = Pool[j-1];
             }
             
         }
         else {
+            tempBlock = Pool[size];
             for(int i = size; i > 0; i--) {
-                Pool[i].setBlock(Pool[i-1]);
+                Pool[i]= Pool[i-1];
             }
             size++;
         }
 
+        Pool[0] = tempBlock;
         Pool[0].setPos(blockPos);
-        getBlock(blockPos, tempByteArray);
-        System.arraycopy(space, 0, tempByteArray,((4*pos)-blockPos),sz);
-        Pool[0].setBlock(tempByteArray);
+        getBlock(blockPos, Pool[0].getBlock());
+        System.arraycopy(space, 0, Pool[0].getBlock(),((4*pos)-blockPos),sz);
         Pool[0].setDirty(true);
     }
 
@@ -122,33 +122,35 @@ public class BufferPool implements BufferPoolADT{
             if(Pool[i].getPos() == blockPos) {
                 cacheHit++;
                 System.arraycopy(Pool[i].getBlock(),((4*pos)-blockPos),space,0,sz);
-                tempBlock.setBlock(Pool[i]);
+                tempBlock = Pool[i];
                 for(int k = i; k >0; k--) {
-                    Pool[k].setBlock(Pool[k-1]);
+                    Pool[k] = Pool[k-1];
                 }
-                Pool[0].setBlock(tempBlock);
+                Pool[0] = tempBlock;
                 return;
             }
         }
         //Not in buffer Pool
         cacheMiss++;
         if(size == maxPoolSize) {
+            tempBlock = Pool[size-1];
             if(Pool[size-1].isDirty()) {
                 writeToFile(Pool[size-1].getBlock(), Pool[size-1].getPos());
             }
             for(int i = size-1; i > 0; i--) {
-                Pool[i].setBlock(Pool[i-1]);
+                Pool[i] = Pool[i-1];
             }
         }
         else {
+            tempBlock = Pool[size];
             for(int i = size; i > 0; i--) {
-                Pool[i].setBlock(Pool[i-1]);
+                Pool[i] = Pool[i-1];
             }
             size++;
         }
+        Pool[0] = tempBlock;
         Pool[0].setPos(blockPos);
-        getBlock(blockPos, tempByteArray);
-        Pool[0].setBlock(tempByteArray);
+        getBlock(blockPos, Pool[0].getBlock());
         Pool[0].setDirty(false);
         System.arraycopy(Pool[0].getBlock(),((4*pos)-blockPos),space, 0,sz);
 

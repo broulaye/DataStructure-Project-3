@@ -29,12 +29,6 @@ public class Block {
         this.isDirty = isDirty;
     }
 
-    public void setBlock(Block newBlock){
-        System.arraycopy(newBlock.getBlock(), 0, block, 0, 4096);
-        this.pos = newBlock.pos;
-        this.isDirty = newBlock.isDirty;
-    }
-
     /**
      * get the block
      * @return the block
@@ -48,7 +42,7 @@ public class Block {
      * @param block1 new value
      */
     public void setBlock(byte[] block1) {
-        System.arraycopy(block1, 0, this.block,0, 4096);
+        block = block1;
     }
 
     /**

@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b02c807-98fe-4101-bd38-2b8276104ad6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test1" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testinput1" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test" afterPath="$PROJECT_DIR$/test" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Block.java" afterPath="$PROJECT_DIR$/src/Block.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BufferPool.java" afterPath="$PROJECT_DIR$/src/BufferPool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BufferPoolTest.java" afterPath="$PROJECT_DIR$/src/BufferPoolTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Sort.java" afterPath="$PROJECT_DIR$/src/Sort.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SortTest.java" afterPath="$PROJECT_DIR$/src/SortTest.java" />
     </list>
     <ignored path="DataStructure-Project-3.iws" />
@@ -41,11 +38,11 @@
       <file leaf-file-name="BufferPool.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BufferPool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1025">
-              <caret line="89" column="48" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
+            <state relative-caret-position="250">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
-                <element signature="e#5622#5623#0" expanded="true" />
-                <element signature="e#5674#5675#0" expanded="true" />
+                <element signature="e#5604#5605#0" expanded="true" />
+                <element signature="e#5656#5657#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,8 +51,8 @@
       <file leaf-file-name="SortTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SortTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+            <state relative-caret-position="339">
+              <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,11 +83,11 @@
       <file leaf-file-name="Block.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-150">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="-625">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding>
-                <element signature="e#1135#1136#0" expanded="true" />
-                <element signature="e#1198#1199#0" expanded="true" />
+                <element signature="e#946#947#0" expanded="true" />
+                <element signature="e#976#977#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,8 +108,8 @@
       <file leaf-file-name="BlockTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BlockTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+            <state relative-caret-position="334">
+              <caret line="17" column="31" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -150,7 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/BlockTest.java" />
         <option value="$PROJECT_DIR$/output.txt" />
         <option value="$PROJECT_DIR$/testinput1" />
         <option value="$PROJECT_DIR$/lib/student.jar!/junit/framework/Assert.class" />
@@ -160,9 +156,10 @@
         <option value="$PROJECT_DIR$/src/BufferPoolTest.java" />
         <option value="$PROJECT_DIR$/test" />
         <option value="$PROJECT_DIR$/src/Sort.java" />
-        <option value="$PROJECT_DIR$/src/Block.java" />
-        <option value="$PROJECT_DIR$/src/SortTest.java" />
         <option value="$PROJECT_DIR$/src/BufferPool.java" />
+        <option value="$PROJECT_DIR$/src/SortTest.java" />
+        <option value="$PROJECT_DIR$/src/BlockTest.java" />
+        <option value="$PROJECT_DIR$/src/Block.java" />
       </list>
     </option>
   </component>
@@ -206,7 +203,38 @@
       <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="F16P3starter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="F16P3starter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="F16P3starter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="F16P3starter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="F16P3starter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
       <pane id="Scratches" />
     </panes>
@@ -850,9 +878,9 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.SortTest.testSort" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Quicksort" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.QuicksortTest.testQInit" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.BlockTest.testBlockFunctions" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.BlockTest.testBlockFunctions" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Quicksort" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.QuicksortTest.testQInit" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.All in F16P3starter" />
       </list>
     </recent_temporary>
@@ -878,44 +906,44 @@
       <workItem from="1477188296571" duration="10400000" />
       <workItem from="1477205936438" duration="6830000" />
       <workItem from="1477324445378" duration="12389000" />
-      <workItem from="1477422682907" duration="29865000" />
+      <workItem from="1477422682907" duration="32269000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 53m 24s.xml">
+    <history-entry file="BlockTest_testBlockFunctions - 2016.10.26 at 14h 24m 29s.xml">
+      <configuration name="BlockTest.testBlockFunctions" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BlockTest_testBlockFunctions - 2016.10.26 at 14h 25m 18s.xml">
+      <configuration name="BlockTest.testBlockFunctions" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SortTest_testSort - 2016.10.26 at 14h 22m 13s.xml">
       <configuration name="SortTest.testSort" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 53m 28s.xml">
+    <history-entry file="SortTest_testSort - 2016.10.26 at 14h 22m 15s.xml">
       <configuration name="SortTest.testSort" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 53m 31s.xml">
+    <history-entry file="SortTest_testSort - 2016.10.26 at 14h 22m 18s.xml">
       <configuration name="SortTest.testSort" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 54m 03s.xml">
+    <history-entry file="SortTest_testSort - 2016.10.26 at 14h 23m 15s.xml">
       <configuration name="SortTest.testSort" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 54m 12s.xml">
+    <history-entry file="SortTest_testSort - 2016.10.26 at 14h 23m 24s.xml">
       <configuration name="SortTest.testSort" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 54m 16s.xml">
+    <history-entry file="SortTest_testSort - 2016.10.26 at 14h 23m 27s.xml">
       <configuration name="SortTest.testSort" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 55m 58s.xml">
+    <history-entry file="SortTest_testSort - 2016.10.26 at 14h 23m 35s.xml">
       <configuration name="SortTest.testSort" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 56m 06s.xml">
-      <configuration name="SortTest.testSort" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 56m 14s.xml">
-      <configuration name="SortTest.testSort" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SortTest_testSort - 2016.10.26 at 01h 56m 26s.xml">
+    <history-entry file="SortTest_testSort - 2016.10.26 at 14h 25m 28s.xml">
       <configuration name="SortTest.testSort" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59484000" />
+    <option name="totallyTimeSpent" value="61888000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -929,12 +957,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25913242" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25913242" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40833333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14322917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -984,8 +1012,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#5622#5623#0" expanded="true" />
-            <element signature="e#5674#5675#0" expanded="true" />
+            <element signature="e#5604#5605#0" expanded="true" />
+            <element signature="e#5656#5657#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1030,10 +1058,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1135#1136#0" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1042,8 +1067,8 @@
         <state relative-caret-position="5400">
           <caret line="216" column="30" selection-start-line="216" selection-start-column="30" selection-end-line="216" selection-end-column="30" />
           <folding>
-            <element signature="e#5622#5623#0" expanded="true" />
-            <element signature="e#5674#5675#0" expanded="true" />
+            <element signature="e#5604#5605#0" expanded="true" />
+            <element signature="e#5656#5657#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1129,8 +1154,8 @@
         <state relative-caret-position="1850">
           <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
-            <element signature="e#5622#5623#0" expanded="true" />
-            <element signature="e#5674#5675#0" expanded="true" />
+            <element signature="e#5604#5605#0" expanded="true" />
+            <element signature="e#5656#5657#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1256,17 +1281,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#1135#1136#0" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Sort.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1285,14 +1299,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlockTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Quicksort.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -1303,10 +1309,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-625">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#946#947#0" expanded="true" />
+            <element signature="e#976#977#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlockTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SortTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+        <state relative-caret-position="339">
+          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1315,11 +1340,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BufferPool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1025">
-          <caret line="89" column="48" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
+        <state relative-caret-position="250">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
-            <element signature="e#5622#5623#0" expanded="true" />
-            <element signature="e#5674#5675#0" expanded="true" />
+            <element signature="e#5604#5605#0" expanded="true" />
+            <element signature="e#5656#5657#0" expanded="true" />
           </folding>
         </state>
       </provider>

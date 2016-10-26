@@ -25,7 +25,7 @@ public class SortTest extends TestCase {
      */
     public void testSort() throws Exception{
         String filename = "test";
-        final String[] argsFile = {"-a", filename, "23"};
+        final String[] argsFile = {"-a", filename, "20"};
         generator.generateFile(argsFile);
         pool = new BufferPool(filename,20);
         sorter.quickSort(pool, 0, pool.getNumRecord()-1);
