@@ -44,10 +44,10 @@ public class BufferPoolTest extends TestCase {
 
     /**
      * Get data from buffer pool
-     */
+     
     public void testRetrieval() {
         pool = new BufferPool(filename, poolSize);
         pool.getBytes(bytes, bytes.length - 1, 2);
         pool.close();
-    }
+    }*/
 }

@@ -1,11 +1,12 @@
+import java.awt.*;
 import java.nio.ByteBuffer;
-import java.nio.ShortBuffer;
 
 public class Sort {
     //used for moving bytes
     private byte[] temp1 = new byte[4];
     private byte[] temp2 = new byte[4];
     private byte[] temp3 = new byte[4];
+    private int array[] = new int[2];
     /**
      * Return key value at given position from buffer
      * @param A bufferpool
@@ -15,35 +16,37 @@ public class Sort {
     private Short getKeyAt(BufferPool A, int pos){
         A.getBytes(temp3, 4, pos);
         ByteBuffer bb = ByteBuffer.wrap(temp3);
-        //return (short) ((temp1[0] << 4) + temp1[1]);
         return bb.getShort();
     }
 
     /**
      * Partition given buffer pool about pivot
      * @param A buffer pool
-     * @param left left position
+     * @param equalPointer left position
      * @param right right position
      * @param pivot pivot position
      * @return first position of right partition
      */
-    private int partition(BufferPool A, int left, int right,
-            Short pivot) {
-        Short leftShort;
-        Short rightShort;
-        while (left <= right) { // Move bounds inward until they meet
-            while ((leftShort = getKeyAt(A, left)).compareTo(pivot) < 0)
-                left++;
-            while ((right >= left) && ((rightShort =getKeyAt(A, right)).compareTo(pivot) >= 0))
-                right--;
-            if (right > left)
-                swap(A, left, right); // Swap out-of-place values
+    private int[] partition(BufferPool A, int equalPointer, int right, Short pivot) {
+
+        int left = equalPointer;
+        while (equalPointer <= right) {// Move bounds inward until they meet
+            int compare =  (getKeyAt(A, equalPointer)).compareTo(pivot);
+            if (compare < 0)
+                swap(A, left++, equalPointer++);
+            else if(compare > 0)
+                swap(A, equalPointer, right--);
+            else
+                equalPointer++;
         }
-        return left; // Return first position in right partition
+
+        array[0] = right;
+        array[1] = left;
+        return array;
     }
 
     private int findPivot(int i, int j) {
-        return (i + j) / 2;
+        return (i+j)/2;
     }
 
     /**
@@ -52,29 +55,51 @@ public class Sort {
      * @param i left index
      * @param j right index
      */
-    public void quickSort(BufferPool A, int i, int j) { // Quicksort
-        int pivotIndex = findPivot(i, j); // Pick a pivot
-        ByteBuffer bb = ByteBuffer.wrap(swap(A, pivotIndex, j)); // Stick pivot at end
-        // k will be the first position in the right subarray
-        int k = partition(A, i, j - 1, bb.getShort());
-        swap(A, k, j); // Put pivot in place
-        if ((k - i) > 1)
-            quickSort(A, i, k - 1); // Sort left partition
-        if ((j - k) > 1)
-            quickSort(A, k + 1, j); // Sort right partition
+    public void quickSort(BufferPool A, int i, int j) {
+
+        if (j-i < 50 && i < j) {
+            doInsertionSort(A, i, j+1);
+        }
+        else {
+
+            if (j <= i) return;//sorting is over
+            int pivotIndex = findPivot(i, j); // Pick a pivot
+            int [] array = partition(A, i, j, getKeyAt(A, pivotIndex));
+            quickSort(A, i, array[1]- 1); // Sort left partition
+            quickSort(A, array[0] + 1, j); // Sort right partition
+
+        }
+
     }
     /**
      * Swap A[i] and A[j]
      * @param A array (buffer pool containing elements)
      * @param i (first argument)
      * @param j (second argument)
-     */
+        */
     private byte[] swap(BufferPool A, int i, int j) {
-        A.getBytes(temp1, 4, i); //temp1 = A[i]
         A.getBytes(temp2, 4, j); //temp2 = A[j]
-        A.insert(temp1, 4, j);   //A[j] = A[i] (or temp1)
+        A.getBytes(temp1, 4, i); //temp1 = A[i]
         A.insert(temp2, 4, i);   //A[i] = A[j] (or temp2)
+        A.insert(temp1, 4, j);   //A[j] = A[i] (or temp1)
+
         return temp1;
     }
 
+    public void doInsertionSort(BufferPool list, int start, int end)
+    {
+        for (int x = start + 1; x < end; x++)
+        {
+            list.getBytes(temp2, 4, x);
+            short val = getKeyAt(list, x);
+            int j = (x - 1);
+            while (j >= 0 && val < getKeyAt(list, j))
+            {
+                list.getBytes(temp1, 4, j);
+                list.insert(temp1, 4, j+1);
+                j--;
+            }
+            list.insert(temp2, 4, j+1);
+        }
+    }
 }
