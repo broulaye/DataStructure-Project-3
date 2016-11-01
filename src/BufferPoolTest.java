@@ -1,32 +1,36 @@
-import org.junit.Assert;
+
 import student.TestCase;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 /**
- * @author: Cheick Berthe
+ * @author Cheick Berthe
  * @author Broulaye Doumbia
- * @version:10/22/2016.
+ * @version 10/22/2016.
  */
 public class BufferPoolTest extends TestCase {
-    final String filename = "testinput1";
-    int poolSize;
-    int position;
-    final String[] argsFile = {"-a", filename , "10"};
-    BufferPool pool;
-    byte[] bytes;
+    private String filename = "testinput1";
+    private int poolSize;
+    private String[] argsFile = {
+        "-a", filename, "10"
+    };
+    private BufferPool pool;
+    private byte[] bytes;
+    private byte[] bytes2;
 
     /********************
      * Set up variables *
      ********************/
-    public void setUp(){
+    public void setUp() {
         poolSize = 34;
-        position = 12;
-        bytes = new byte[4096];
+        bytes = new byte[4];
+        bytes2 = new byte[4];
         try {
             FileGenerator generator = new FileGenerator();
             generator.generateFile(argsFile);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -35,10 +39,14 @@ public class BufferPoolTest extends TestCase {
     /**
      * Test insertion to buffer pool
      */
-    public void testInsertion(){
+    public void testInsertion() {
         pool = new BufferPool(filename, poolSize);
-        pool.insert(bytes, bytes.length -10, 0);
-        Assert.assertEquals(10240, pool.getNumRecord());
+        pool.getBytes(bytes, bytes.length, 20);
+        pool.insert(bytes, 4, 0);
+        pool.getBytes(bytes2, bytes.length, 0);
+        ByteBuffer bb = ByteBuffer.wrap(bytes);
+        ByteBuffer bb2 = ByteBuffer.wrap(bytes);
+        assertEquals(bb.getShort(), bb2.getShort());
         pool.close();
     }
 
@@ -47,7 +55,11 @@ public class BufferPoolTest extends TestCase {
      */
     public void testRetrieval() {
         pool = new BufferPool(filename, poolSize);
-        pool.getBytes(bytes, bytes.length - 1, 2);
+        pool.getBytes(bytes, bytes.length, 2);
+        pool.getBytes(bytes2, bytes.length, 2);
+        ByteBuffer bb = ByteBuffer.wrap(bytes);
+        ByteBuffer bb2 = ByteBuffer.wrap(bytes);
+        assertEquals(bb.getShort(), bb2.getShort());
         pool.close();
     }
 }

@@ -2,9 +2,9 @@ import org.junit.Assert;
 import student.TestCase;
 
 /**
- * @author: Cheick Berthe
- * @author: Broulaye Doumbia
- * @version:10/22/2016.
+ * @author Cheick Berthe
+ * @author Broulaye Doumbia
+ * @version 10/22/2016.
  */
 public class BlockTest extends TestCase {
     /**
