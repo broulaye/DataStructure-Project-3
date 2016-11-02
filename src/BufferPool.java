@@ -189,9 +189,7 @@ public class BufferPool implements BufferPoolADT {
         try {
             file.seek(blockPos);
 
-            if (file.read(block) < 0) {
-                throw new Exception("End of file reached");
-            }
+            file.read(block);
         }
         catch (Exception e) {
             e.printStackTrace();

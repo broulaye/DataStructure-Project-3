@@ -51,6 +51,7 @@ public class QuicksortTest extends TestCase {
         catch (IOException e) {
             e.printStackTrace();
         }
+
         String[] argsSort2 = {
             "mainClassTest2", "15", "mainClassStat2"
         };
@@ -61,5 +62,21 @@ public class QuicksortTest extends TestCase {
         catch (Exception e) {
             e.printStackTrace();
         }
+        String[] argsSort5 = {
+            "mainClassTest2", "mainClassStat2"
+        };
+        try {
+            Quicksort.main(argsSort5);
+        }
+        catch (Exception exc) {
+            exc.printStackTrace();
+        }
+        try {
+            Quicksort.main(null);
+        }
+        catch (Exception exc) {
+            exc.printStackTrace();
+        }
+
     }
 }

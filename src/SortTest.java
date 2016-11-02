@@ -12,7 +12,7 @@ public class SortTest extends TestCase {
     private String[] args;
 
     /*******************
-     * Variable setup
+     * Variable setup  *
      *******************/
     public void setUp() {
 
@@ -118,6 +118,7 @@ public class SortTest extends TestCase {
             "-b", filename, "100"
         };
         generator.generateFile(argsFile);
+        assertFalse(checker.checkFile(filename));
         args[1] = "10"; // number of buffers
         args[2] = "test67Stat"; // stat file name
         Quicksort.main(args);
